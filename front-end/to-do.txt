@@ -1,7 +1,7 @@
-- Construir a API 
-- Conexão com o Banco de Dados
-- Conectar o Front com o Back
-
-- Lógicas do Player
-
-- GitHub e Deploy
+- Randomizar listas de músicas e artistas (!)
+- Tornar dinâmico o número de itens exibidos inicialmente de acordo com a tela do usuário (!)
+- Criar botão de voltar para a última página (?)
+- Criar a barra de pesquisa e a tela de exibição de resultados (!!)
+- Criar a opção de randomizar ou não a lista de músicas dentro de uma playlist (!)
+- Criar login (?)
+- Opção de criar e editar playlist de usuário (!)

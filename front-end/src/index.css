@@ -62,12 +62,81 @@ img {
   justify-content: space-between;
   align-items: center;
   padding: 8px 20px;
+  position: fixed; /* Fixa o header no topo */
+  top: 0;
+  left: 0;
+  width: 100%; /* Faz o header ocupar toda a largura */
+  background-color: black; /* Cor de fundo para evitar transparência */
+  text-align: center;
+  z-index: 1000; /* Mantém o header acima de outros elementos */
+}
+
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  offset: 5vw;
+  align-items: center;
+  width: 100%;
+}
+
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 30vw;
+}
+
+.search-bar {
+  text-align: center;
+  border-radius: 12px;
+  width: 30vw;
+  padding: 8px;
+  background-color: var(--green-900);
+  border: 1px solid var(--green-1000-25);                                                                          
+  color: white;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  padding: 10px 10px 10px 40px; /* Espaço à esquerda para a lupa */
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.search-bar:focus {
+  box-shadow: 0 0 0 0;
+  outline: 0; /* tira a linha de fora ao clicar no input */ 
+  border: 1px solid var(--green-50);
+}
+
+.search-bar::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+/* Estiliza o botão de limpar no Chrome, Safari e Edge */
+.search-bar::-webkit-search-cancel-button {
+  filter: invert(1); /* Inverte as cores (torna o azul em branco) */
+  cursor: pointer;
+}
+
+/* Para Firefox (removendo o botão, pois não há suporte para estilização direta) */
+.search-bar::-moz-search-clear {
+  display: none;
 }
 
 /* Main */
 
 .main {
-  margin: 0 10px 10px;
+  margin: 56px 10px 10px;
   padding: 20px;
   border-radius: var(--border-radius-l);
   flex: 1;
@@ -230,6 +299,7 @@ img {
   border-radius: var(--border-radius-l);
   margin: 0 10px 10px;
   overflow: hidden;
+  padding-top: 56px;
 }
 
 .artist__header {
@@ -348,6 +418,7 @@ img {
   display: grid;
   grid-template-rows: 1fr auto;
   flex: 1;
+  padding-top: 56px;
 }
 
 .song__container {
