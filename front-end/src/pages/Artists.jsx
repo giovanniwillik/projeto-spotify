@@ -1,8 +1,8 @@
 import React from "react";
 import Main from "../components/Main";
 
-const Artists = () => {
-  return <Main type="artists" />;
+const Artists = ({search, setSearch}) => {
+  return <Main type="artists" search={search} setSearch={setSearch}/>;
 };
 
 export default Artists;

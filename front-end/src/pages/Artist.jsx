@@ -6,7 +6,7 @@ import SongList from "../components/SongList";
 import { artistArray } from "../assets/database/artists";
 import { songsArray } from "../assets/database/songs";
 
-const Artist = () => {
+const Artist = ({search}) => {
   const { id } = useParams();
   // console.log(useParams());
 
@@ -43,7 +43,7 @@ const Artist = () => {
       <div className="artist__body">
         <h2>Populares</h2>
 
-        <SongList songsArray={songsArrayFromArtist} />
+        <SongList songsArray={songsArrayFromArtist} search={search}/>
       </div>
 
       <Link to={`/song/${randomIdFromArtist}`}>

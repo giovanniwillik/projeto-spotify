@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { songsArray } from "../assets/database/songs";
 import { artistArray } from "../assets/database/artists";
 
-const Song = () => {
+const Song = ({search}) => {
   const { id } = useParams();
   // console.log(id);
 

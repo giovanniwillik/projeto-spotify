@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SongItem = ({ image, name, duration, artist, audio, _id, index }) => {
+const SongItem = ({ image, name, duration, artist, audio, _id, index, search}) => {
   return (
-    <Link to={`/song/${_id}`} className="song-item">
+    <Link to={`/song/${_id}`} className="song-item" onClick={(setSearch) => {setSearch(false)}}>
       <div className="song-item__number-album">
         <p>{index + 1}</p>
 

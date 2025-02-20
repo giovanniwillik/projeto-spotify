@@ -1,9 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-const SearchBar = () => {
-    const [search, setSearch] = useState("");
+const SearchBar = ({setSearch}) => {
     const [isOnFocus, setIsOnFocus] = useState(false);
     const inputRef = useRef(null)
 
