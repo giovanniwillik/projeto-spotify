@@ -209,6 +209,24 @@ img {
   gap: 16px;
 }
 
+.item-list__show-more,
+.item-list__show-less {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 10px;
+  transition: color var(--transition-duration) var(--transition-function);
+}
+
+.item-list__show-more:hover,
+.item-list__show-less:hover {
+  color: var(--green-300);
+  text-decoration: underline;
+}
+
 @media (max-width: 480px) {
   .item-list {
     gap: 20px;

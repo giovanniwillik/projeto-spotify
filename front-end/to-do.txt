@@ -1,7 +1,7 @@
-- Randomizar listas de músicas e artistas (!)
-- Tornar dinâmico o número de itens exibidos inicialmente de acordo com a tela do usuário (!)
+- Randomizar listas de músicas e artistas (!) - FEITO
+- Tornar dinâmico o número de itens exibidos inicialmente de acordo com a tela do usuário (!) - FEITO
 - Criar botão de voltar para a última página (?)
-- Criar a barra de pesquisa e a tela de exibição de resultados (!!)
+- Criar a barra de pesquisa e a tela de exibição de resultados (!!) - FEITO
 - Criar a opção de randomizar ou não a lista de músicas dentro de uma playlist (!)
 - Criar login (?)
 - Opção de criar e editar playlist de usuário (!)

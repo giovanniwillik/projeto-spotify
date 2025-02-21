@@ -1,14 +1,47 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import SingleItem from "./SingleItem";
 import { Link, useLocation } from "react-router-dom";
 
-const ItemList = ({ title, items, itemsArray, path, idPath, search, setSearch, pageType}) => {
-  // console.log(items);
-  // console.log(useLocation());
+const ItemList = ({ title, items, itemsArray, path, idPath, search, setSearch, pageType }) => {
   const { pathname } = useLocation();
-  // console.log(pathname);
   const isHome = pathname === "/";
-  const finalItems = isHome ? items : Infinity;
+  const containerRef = useRef(null);
+  const [itemsPerRow, setItemsPerRow] = useState(0);
+  const [visibleRows, setVisibleRows] = useState(1);
+
+  useEffect(() => {
+    if (pageType === "SearchResults") {
+      const calculateItemsPerRow = () => {
+        if (containerRef.current) {
+          const containerWidth = containerRef.current.offsetWidth;
+          const itemWidth = 172; // Largura do item
+          const gap = 16; // Espaço entre os itens (definido no CSS)
+          const containerPadding = 40; // Padding total do container (20px de cada lado)
+          
+          const availableWidth = containerWidth - containerPadding;
+          const calculatedItemsPerRow = Math.floor((availableWidth + gap) / (itemWidth + gap));
+          setItemsPerRow(calculatedItemsPerRow);
+        }
+      };
+
+      calculateItemsPerRow();
+      window.addEventListener('resize', calculateItemsPerRow);
+
+      return () => window.removeEventListener('resize', calculateItemsPerRow);
+    }
+  }, [pageType]);
+
+  const totalRows = pageType === "SearchResults" ? Math.ceil(itemsArray.length / itemsPerRow) : 1;
+  const visibleItems = pageType === "SearchResults" ? itemsPerRow * visibleRows : items;
+  const canShowMore = pageType === "SearchResults" && visibleRows < totalRows;
+
+  const handleShowMore = () => {
+    setVisibleRows(prev => Math.min(prev + 1, totalRows));
+  };
+
+  const handleShowLess = () => {
+    setVisibleRows(1);
+  };
 
   return (
     <div className="item-list">
@@ -18,9 +51,13 @@ const ItemList = ({ title, items, itemsArray, path, idPath, search, setSearch, p
           <Link to={path} className="item-list__link">
             Mostrar tudo
           </Link>
-        ) : (
-          <></>
-        )}
+        ) : pageType === "SearchResults" ? (
+          canShowMore ? (
+            <button onClick={handleShowMore} className="item-list__show-more">Ver mais</button>
+          ) : visibleRows > 1 ? (
+            <button onClick={handleShowLess} className="item-list__show-less">Ver menos</button>
+          ) : null
+        ) : null}
       </div>
 
       <div className="item-list__subtitle">
@@ -29,15 +66,11 @@ const ItemList = ({ title, items, itemsArray, path, idPath, search, setSearch, p
         {(pageType === "SearchResults") && (itemsArray.length > 1) ? (<h4>{`${itemsArray.length} artistas foram encontrados`}</h4>) : (<></>)}
       </div>
 
-      <div className="item-list__container">
+      <div className="item-list__container" ref={containerRef}>
         {itemsArray
-          .filter((currentValue, index) => index < finalItems)
+          .slice(0, visibleItems)
           .map((currObj, index) => (
             <SingleItem
-              // id={currObj.id}
-              // name={currObj.name}
-              // image={currObj.image}
-              // banner={currObj.banner}
               {...currObj}
               idPath={idPath}
               key={`${title}-${index}`}

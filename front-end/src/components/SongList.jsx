@@ -31,12 +31,17 @@ const SongList = ({ songsArray, pageType, search }) => {
       <p
         className="song-list__see-more"
         onClick={() => {
-          setItems(items + 5);
-          // items += 5;
-          // console.log(items);
+          if (songsArray.length < items) {
+            setItems(5);
+          }
+          else {
+            setItems(items + 5);
+            // items += 5;
+            // console.log(items);
+          }
         }}
       >
-        Ver mais
+        {(songsArray.length === 0) ? <></> : (songsArray.length < items) ? "Ver menos" : "Ver mais"}
       </p>
     </div>
   );
